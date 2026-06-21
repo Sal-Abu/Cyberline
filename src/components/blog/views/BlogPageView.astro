@@ -1,0 +1,145 @@
+---
+/**
+ * BlogPageView — a paginated blog index page (page 2..N).
+ *
+ * Shared body for the default-locale route (`/blog/page/N`) and the
+ * locale-prefixed route (`/<locale>/blog/page/N`). The page number and total
+ * are resolved in each route's `getStaticPaths` and passed in; URLs are built
+ * locale-aware via `lib/blog`.
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import Pagination from '@/components/blog/Pagination.astro';
+import TagList from '@/components/blog/TagList.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import CTA from '@/components/ui/marketing/CTA/CTA.astro';
+import { Hero } from '@/components/hero';
+import siteConfig from '@/config/site.config';
+import { resolveSocialLinks } from '@/lib/utils';
+import { defaultLocale } from '@/i18n';
+import {
+  BLOG_POSTS_PER_PAGE,
+  BLOG_TAG_CLOUD_LIMIT,
+  collectTopTags,
+  getBlogBaseUrl,
+  getBlogPageUrl,
+  getPostUrl,
+  getPublishedPosts,
+} from '@/lib/blog';
+
+interface Props {
+  /** Locale whose posts this page renders. Defaults to the site default. */
+  locale?: string;
+  /** 1-based page number (always >= 2 for this view). */
+  page: number;
+  /** Total number of index pages for this locale. */
+  totalPages: number;
+}
+
+const { locale = defaultLocale, page, totalPages } = Astro.props;
+
+const posts = await getPublishedPosts(locale);
+const nonFeatured = posts.filter((p) => !p.data.featured);
+const regularPostsAll = nonFeatured.length > 0 ? nonFeatured : posts;
+
+const start = (page - 1) * BLOG_POSTS_PER_PAGE;
+const pagePosts = regularPostsAll.slice(start, start + BLOG_POSTS_PER_PAGE);
+
+const topTags = collectTopTags(posts, BLOG_TAG_CLOUD_LIMIT);
+
+const socialLinks = resolveSocialLinks(siteConfig.socialLinks);
+---
+
+<PageLayout
+  title={`Blog — Page ${page}`}
+  description={`Page ${page} of ${totalPages} — articles on Astro, web performance, design, and the web.`}
+  showScrollProgress
+  eagerReveal
+  footerBackground="secondary"
+>
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="book" size="sm" />
+      Page {page} of {totalPages}
+    </Badge>
+
+    <h1 slot="title">Blog</h1>
+
+    <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
+  </Hero>
+
+  <section class="bg-background-secondary py-[var(--space-section-md)] border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4" data-reveal>
+        <a
+          href={getBlogBaseUrl(locale)}
+          class="group inline-flex items-center gap-2 rounded-lg border border-border-strong bg-transparent px-4 py-2 text-sm font-medium text-foreground-muted hover:border-brand-500 hover:text-brand-500 transition-colors"
+        >
+          <Icon name="arrow-left" size="sm" />
+          Newest posts
+        </a>
+
+        {topTags.length > 0 && (
+          <TagList tags={topTags} locale={locale} class="justify-center" />
+        )}
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {pagePosts.map((post, index) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            href={getPostUrl(post.id, locale)}
+            publishedAt={post.data.publishedAt}
+            tags={post.data.tags}
+            author={post.data.author}
+            image={post.data.image}
+            svgSlug={post.data.svgSlug}
+            revealDelay={index % 3}
+            eager={index === 0}
+          />
+        ))}
+      </div>
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        href={(p) => getBlogPageUrl(p, locale)}
+      />
+    </div>
+  </section>
+
+  <CTA variant="default" size="md" maxWidth="lg" glow={false} data-reveal>
+    <h2 slot="heading" class="!text-4xl">Follow along</h2>
+    <p slot="description" class="!text-lg text-balance">Stay in the loop — new articles, thoughts, and updates.</p>
+
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/rss.xml"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="rss" size="sm" />
+        RSS Feed
+      </a>
+      {socialLinks.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+        >
+          <Icon name={link.icon} size="sm" />
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={`mailto:${siteConfig.email}`}
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="mail" size="sm" />
+        Email
+      </a>
+    </div>
+  </CTA>
+</PageLayout>

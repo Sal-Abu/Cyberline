@@ -1,0 +1,93 @@
+---
+title: "Video Slides in Project Galleries — Zero Bytes Until Play"
+description: "Project carousels now accept self-hosted video slides next to images. Here's how to use them, how they work, and why they don't cost a single Lighthouse point."
+publishedAt: 2026-06-12
+author: "Hans Martens"
+tags: ["astro-rocket", "features", "projects", "performance"]
+featured: false
+locale: en
+image: "../../../assets/blog/project-gallery-video-slides.svg"
+svgSlug: "project-gallery-video-slides"
+imageAlt: "A play button icon above the words 'video slides', on a brand-coloured background"
+---
+
+Screenshots are fine for a portfolio, but if you're showing off software — a checkout flow, an animation, anything that *moves* — thirty seconds of video says more than eight stills. A user selling a software product asked for exactly this ([#396](https://github.com/hansmartensdev/Astro-Rocket/issues/396)): product pages the way e-commerce does them, where the first slide in the gallery is a demo video and the screenshots follow.
+
+So project galleries now accept **video slides**. Both of them: the hero carousel that comes from frontmatter, and the `<ProjectGallery>` component you drop into the MDX body. And because this theme's whole promise is a 100/100/100/100 Lighthouse score out of the box, the feature is built so a video slide costs **zero bytes until the visitor presses play**.
+
+## Using it in frontmatter
+
+A gallery slide was always `src` + `alt`. It can now also be `video` + `poster` + `alt`:
+
+```yaml
+---
+title: "My Product"
+description: "..."
+gallery:
+  - video: "/videos/demo.mp4"
+    poster: "../../assets/projects/demo-poster.jpg"
+    alt: "30-second product demo"
+  - src: "../../assets/projects/shot-1.jpg"
+    alt: "Dashboard view"
+  - src: "../../assets/projects/shot-2.jpg"
+    alt: "Settings page"
+---
+```
+
+Two things to notice:
+
+- **The video is a root-relative path**, not an import. Video files live in `public/` (I use `public/videos/`), because Astro's asset pipeline is for images — video gets served as-is.
+- **The poster is required**, and it *is* an import-style image path like every other gallery image. That's not me being strict for fun; the poster is what makes the performance story work. More on that below.
+
+The first slide is the featured one, so putting the video first gives you the e-commerce layout from the issue: demo up front, stills behind it.
+
+## Using it in the post body
+
+The same shape works in `<ProjectGallery>`, the in-body carousel with the click-to-zoom lightbox — including an optional caption:
+
+```mdx
+import ProjectGallery from '@/components/projects/ProjectGallery.astro';
+import poster from '@/assets/projects/demo-poster.jpg';
+import shot1 from '@/assets/projects/shot-1.jpg';
+
+<ProjectGallery
+  images={[
+    { video: '/videos/demo.mp4', poster, alt: 'Product demo', caption: 'The checkout flow, start to finish.' },
+    { src: shot1, alt: 'Dashboard', caption: 'The main dashboard.' },
+  ]}
+/>
+```
+
+One behavioural difference from image slides: clicking an image opens the lightbox, but clicking a video plays it inline — the native controls own that click. If you navigate to a video *inside* the lightbox (arrow keys or the chevrons), it plays there too, full-size.
+
+## How it stays Lighthouse-neutral
+
+This is the part I actually care about, and it comes down to four decisions:
+
+1. **`preload="none"` on every video element.** The browser downloads no video data — not even metadata — until the visitor presses play. A project page with a video slide ships exactly as many media bytes as one without.
+2. **The poster is the slide.** What you see in the carousel is the poster image, and it goes through the same `astro:assets` pipeline as a regular slide — optimised, resized, served as WebP. If the video is your first slide, the poster is your LCP candidate, and it behaves like any other optimised hero image.
+3. **No autoplay.** Autoplaying video means downloading video on page load, which is the whole thing we're avoiding. The visitor decides.
+4. **Swiping away pauses.** A small addition to the carousel script pauses any video that's no longer the active slide, so audio never keeps playing off-screen.
+
+And one deliberate non-feature: **no YouTube or Vimeo embeds**. A third-party iframe drags in hundreds of kilobytes of player script, cookies, and consent obligations — that's a different trade-off than this theme makes. Self-hosted files keep the page yours.
+
+## Keeping the file small
+
+A gallery demo isn't a film. A few encoding habits keep it friendly:
+
+- Keep it short — 15 to 45 seconds shows a flow; nobody watches a four-minute screen recording.
+- 1280×720 matches the carousel's aspect ratio (`aspect-video`) exactly.
+- H.264 MP4 plays everywhere. With ffmpeg:
+
+```bash
+ffmpeg -i recording.mov -vf "scale=1280:720" -c:v libx264 -crf 28 \
+  -movflags +faststart -an public/videos/demo.mp4
+```
+
+`-crf 28` is plenty for UI recordings, `-an` drops the audio track if your demo doesn't need one, and `+faststart` moves the metadata to the front of the file so playback starts immediately. A 30-second UI recording lands around 1–2 MB — and remember, nobody downloads it until they ask to.
+
+## Under the hood
+
+If you want to poke at it: the slide union is validated in `src/content.config.ts` (a slide is *either* `src`+`alt` *or* `video`+`poster`+`alt` — anything else fails the build), the shared `GallerySlide` type lives in `src/lib/gallery.ts`, and the rendering happens in `ProjectCarousel.astro` (hero) and `ProjectGallery.astro` (body + lightbox). No new dependencies, no client framework — the same native scroll-snap carousel, now with a `<video>` element where a slide asks for one.
+
+`src/content/projects/ecommerce-store.mdx` carries a ready-to-uncomment video slide if you want a starting point. Drop a file in `public/videos/`, point a slide at it, give it a poster — done.

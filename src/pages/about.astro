@@ -1,0 +1,402 @@
+---
+/**
+ * About page
+ * URL: /about
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
+import TechStack from '@/components/landing/TechStack.astro';
+import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
+---
+<PageLayout
+  title="About Cyberline Solutions | IT & Web Experts"
+  description="Your dedicated technology partner. We streamline your operations through expert IT consulting, custom automation, and scalable web solutions."
+  footerBackground="secondary"
+>
+  <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="shield-check" size="sm" />
+      About Us
+    </Badge>
+    <h1 slot="title">
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Cyberline Solutions</span><br />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
+          <TypingEffect words={["IT Consulting", "Business Automation", "Web Development", "Self-Hosted Infra", "AI Integrations"]} />
+      </span>
+    </h1>
+
+    <p slot="description">
+      Your dedicated technology partner. We streamline your operations through expert IT consulting, custom automation, and scalable web solutions — so you can focus on growing your business.
+    </p>
+  </Hero>
+
+  <!-- About the Company -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12">
+        <!-- Left: text -->
+        <div class="flex flex-col justify-center gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-eager data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">Our Mission</Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
+              Technology should accelerate, not complicate.
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Modern businesses run on software, but managing that software shouldn't be your full-time job. At Cyberline Solutions, we act as your external IT department and technology strategist. 
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Whether it's auditing your SaaS subscriptions to cut costs, building a high-performance web storefront, or using N8N to automate your manual data entry, we deploy solutions that actively improve your bottom line.
+          </p>
+        </div>
+        <!-- Right: MSP facts card -->
+        <div class="flex flex-col h-full" data-reveal data-reveal-eager data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="flex-1 flex flex-col justify-center">
+            <div class="grid grid-cols-2 sm:grid-cols-3 glitch:grid-cols-2 gap-x-6 gap-y-8">
+              <div class="flex flex-col items-center text-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="layers" size="md" />
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-foreground">End-to-End</h3>
+                  <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                    From frontend web dev to backend infrastructure.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col items-center text-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="git-merge" size="md" />
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-foreground">Agnostic</h3>
+                  <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                    We recommend what works, not what pays commissions.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col items-center text-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="trending-up" size="md" />
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-foreground">Scalable</h3>
+                  <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                    Systems architected to grow with your business.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col items-center text-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="shield" size="md" />
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-foreground">Security First</h3>
+                  <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                    Data protection and privacy baked into every layer.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col items-center text-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="zap" size="md" />
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-foreground">Automated</h3>
+                  <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                    Eliminating manual data entry through smart workflows.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col items-center text-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="activity" size="md" />
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-foreground">24/7 Reliability</h3>
+                  <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                    Proactive monitoring to stop downtime before it happens.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Operating Principles</Badge>
+          <h2 class="font-display text-4xl font-bold text-foreground">
+            How we do business
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          We don't just fix computers; we architect systems. Every solution we deploy is guided by these core principles.
+        </p>
+      </div>
+      <div class="grid gap-6 sm:gap-8 sm:grid-cols-3">
+        <Card hover data-reveal>
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="scissors" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Efficiency & Pragmatism</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                No tech bloat. We use the right tools to solve actual business problems, cutting unnecessary SaaS subscriptions and overhead costs.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover data-reveal data-reveal-delay="1">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="key" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Transparency & Control</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                You own your data and infrastructure. We avoid vendor lock-in, providing clear documentation and honest, unbiased advice.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover data-reveal data-reveal-delay="2">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="fast-forward" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Future-Proof Architecture</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                We build systems that scale. From careful legacy data migration to deploying modern AI integrations, we always look ahead.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <TechStack
+    badge="Tools & Tech"
+    title="Technologies we trust"
+    description="The technologies powering our solutions — chosen for performance, security, and long-term reliability. We specialize in modern frameworks, robust cloud infrastructure, and powerful self-hosted alternatives."
+    background="secondary"
+  />
+
+  <!-- FAQ -->
+  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Good to know</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Frequently asked questions
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          Common questions about partnering with Cyberline Solutions.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Card 1: Services & Capabilities -->
+        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
+          <div class="flex items-center gap-3 pb-4 border-b border-border">
+            <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="briefcase" size="md" />
+            </div>
+            <h3 class="font-display text-base font-semibold text-foreground">Services & Approach</h3>
+          </div>
+          <div class="w-full">
+            <details class="border-b border-border" name="faq-services">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                What exactly does Cyberline Solutions do?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                We are a modern Managed Service Provider (MSP) and technical consultancy. We handle web development, automate your business processes using tools like N8N, manage your server infrastructure, and consult on strategic IT cost-cutting.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-services">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                Do I need to move everything to the cloud?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                Not necessarily. While we are experts in cloud deployments, we also specialize in Self-Hosting setups. This allows you to run enterprise-grade tools on your own infrastructure, giving you total data privacy and drastically reducing recurring SaaS fees.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-services">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                What if we already have an internal IT team?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                We frequently co-manage with internal IT departments. We can handle specialized, time-consuming tasks — like complex data migrations, AI tool integrations, or e-commerce web development — allowing your team to focus on daily operations.
+              </div>
+            </details>
+            <details class="border-b border-border last:border-0" name="faq-services">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                How does your pricing work?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                We offer transparent, fixed-rate pricing for distinct projects (like a website build or a data migration) and predictable monthly retainers for ongoing managed services, server maintenance, and IT support. No surprise invoices.
+              </div>
+            </details>
+          </div>
+        </Card>
+
+        <!-- Card 2: Technical & Security -->
+        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="2">
+          <div class="flex items-center gap-3 pb-4 border-b border-border">
+            <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="shield-check" size="md" />
+            </div>
+            <h3 class="font-display text-base font-semibold text-foreground">Technical & Security</h3>
+          </div>
+          <div class="w-full">
+            <details class="border-b border-border" name="faq-tech">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                Are we locked into your services?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                Never. We believe in transparency and data ownership. When we build an infrastructure or an automation pipeline, we provide full handover documentation. You retain the root keys and administrative access to everything.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-tech">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                How do you handle data migrations?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                We use secure, scripted ETL (Extract, Transform, Load) processes. We sanitize legacy data, remove duplicates, map it to your new system's schema, and perform extensive testing in a sandbox environment before making any live changes.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-tech">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                What does your AI integration look like?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                We focus on practical AI. This means securely connecting models (like OpenAI or local LLMs) to your internal data to create smart chatbots for customer support, or using AI to automatically extract data from bulk invoices and PDFs.
+              </div>
+            </details>
+            <details class="border-b border-border last:border-0" name="faq-tech">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                Do you monitor systems outside of business hours?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                Yes. For our managed service clients, we employ automated 24/7 uptime and security monitoring. If an email server drops or a web node fails at 2 AM, our systems automatically trigger remediation scripts and alert our on-call team.
+              </div>
+            </details>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Approach -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-8 sm:gap-10 glitch:grid-cols-2 glitch:items-center">
+        <!-- Text -->
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:justify-center glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">Our Approach</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            A partner, not just a vendor
+          </h2>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            We believe in building long-term relationships with our clients. We take the time to understand your unique business bottlenecks before recommending a single line of code or software subscription.
+          </p>
+          <Button variant="outline" size="lg" href="/services" class="self-start sm:self-center glitch:self-start mt-2">
+            View all services
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+
+        <!-- Info card -->
+        <div class="flex flex-col h-full" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="flex-1 flex flex-col justify-center gap-6">
+            <div class="flex flex-col gap-2">
+              <h3 class="text-base font-semibold text-foreground">Dedicated Support</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed">
+                No generic helpdesks. You get direct access to the engineers and consultants who actually built and manage your infrastructure.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-base font-semibold text-foreground">Data Ownership</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed">
+                You own your code, your data, and your servers. We simply deploy, optimize, and manage them on your behalf.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-base font-semibold text-foreground">Proactive Maintenance</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed">
+                We monitor your systems to prevent downtime and security breaches before they happen, rather than just reacting to emergencies.
+              </p>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+    <!-- Mobile: flat section, no card -->
+    <div class="glitch:hidden mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <Badge variant="brand" pill class="mb-6">Let's talk</Badge>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Ready to optimize your tech stack?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        Book a free discovery call to discuss your infrastructure, web development, or business automation needs.
+      </p>
+      <div class="flex justify-center">
+        <Button size="lg" href="/contact" class="cta-btn-brand">
+          Contact Us
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </div>
+
+    <!-- Desktop: contained LetterGlitch band with glass card -->
+    <LetterGlitchBand>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Ready to optimize your tech stack?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        Book a free discovery call to discuss your infrastructure, web development, or business automation needs.
+      </p>
+      <div class="flex justify-center">
+        <Button size="lg" href="/contact" class="hero-btn-brand">
+          Contact Us
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </LetterGlitchBand>
+  </section>
+</PageLayout>
+
+<style>
+  details[open] > summary .faq-icon {
+    transform: rotate(180deg);
+  }
+</style>

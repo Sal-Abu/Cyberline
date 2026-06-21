@@ -1,0 +1,698 @@
+---
+/**
+ * Services page
+ * URL: /services
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
+---
+<PageLayout
+  title="Services — Web Development, Automation & IT Consulting"
+  description="Comprehensive digital solutions: from modern web development and self-hosting to AI tooling and business automation."
+>
+  <Hero layout="centered" size="sm" class="isolate services-hero" showHeroHalo>
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="sparkles" size="sm" />
+      Services
+    </Badge>
+    <h1 slot="title">
+      <span class="text-foreground">What we offer —</span><br />
+      <span class="text-brand-500">built, scaled, and automated.</span>
+    </h1>
+
+    <p slot="description">
+      End-to-end technical solutions to streamline your operations. From writing the first line of code to automating workflows and managing infrastructure, every project gets the same attention to detail.
+    </p>
+
+    <!-- Expanded Hero Actions (8 Buttons) -->
+    <Fragment slot="actions">
+      <div class="flex flex-wrap justify-center gap-3 mt-4">
+        <Button size="md" href="#web-development" variant="outline">
+          Web Dev & Management
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="md" href="#consulting" variant="outline">
+          IT Consulting
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="md" href="#ecommerce" variant="outline">
+          E-Commerce
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="md" href="#ai-tooling" variant="outline">
+          AI Tooling
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="md" href="#automation" variant="outline">
+          Automation (N8N)
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="md" href="#email" variant="outline">
+          Email Services
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="md" href="#data-migration" variant="outline">
+          Data Migration
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="md" href="#infrastructure" variant="outline">
+          Self Hosting
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- Service 1: Web Development and Website Management -->
+  <section id="web-development" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-eager data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="layout" size="sm" />
+              Web Dev & Management
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Built to perform, managed to last
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            A great website isn't just a launch event; it's a living asset. We build lean, accessible, and fast websites without template bloat or vendor lock-in. 
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Beyond the initial build, we handle ongoing management, security updates, and performance monitoring so your digital presence remains sharp while you focus on running your business.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0" data-reveal data-reveal-eager data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="code" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Custom Development</span> — Modern stacks (like Astro & Tailwind) ensuring your site is lightning fast and fully responsive.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Content Management</span> — Intuitive, typed CMS setups that make publishing content effortless and safe.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Ongoing Maintenance</span> — Routine updates, bug fixes, and uptime monitoring handled completely in the background.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 2: IT Consulting and Cost Cutting -->
+  <section id="consulting" class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:order-2 glitch:items-start glitch:text-left" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="trending-down" size="sm" />
+              Consulting
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Trim the fat, optimize the stack
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Over time, software subscriptions pile up, redundant tools are adopted, and workflows become fragmented. We bring a pragmatic, outsider's perspective to your technical operations.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Through comprehensive audits, we identify areas to consolidate services, negotiate better vendor rates, and eliminate unnecessary tech bloat, directly improving your bottom line.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:order-1 glitch:max-w-none glitch:mx-0" data-reveal data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="search" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">SaaS Audits</span> — Identifying overlapping tools, unused licenses, and expensive subscriptions.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Workflow Optimization</span> — Streamlining your team's tech usage to improve daily productivity and communication.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Vendor Negotiation</span> — Leveraging industry knowledge to restructure enterprise and standard contracts.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 3: Digital Storefront setup and Maintenance -->
+  <section id="ecommerce" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="shopping-bag" size="sm" />
+              E-Commerce
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Digital storefronts that convert
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Selling online requires more than just a checkout button. We design and configure end-to-end e-commerce solutions that guide users seamlessly from landing page to purchase.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            We handle the heavy lifting: secure payment gateways, inventory synchronization, tax configuration, and post-purchase email flows, ensuring your store is always open and operating smoothly.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="credit-card" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Platform Setup</span> — Full configuration of Shopify, WooCommerce, or headless commerce backends.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Conversion Tuning</span> — Optimizing product pages, cart flows, and checkout logic to reduce abandonment.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Inventory Integration</span> — Syncing online stock with your existing fulfillment systems or physical POS.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 4: AI Tooling for business use -->
+  <section id="ai-tooling" class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:order-2 glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="cpu" size="sm" />
+              AI Integration
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Practical AI, zero buzzwords
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Artificial Intelligence is only valuable if it solves real business problems. We cut through the hype to integrate pragmatic AI tools into your daily operations.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Whether it's deploying custom LLMs to query your internal knowledge base, automating first-line customer support, or bulk-processing documents, we build secure, private AI solutions.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:order-1 glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="cpu" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Custom Chatbots</span> — Customer-facing or internal bots trained exclusively on your company data.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Document Processing</span> — Automatically extracting data from PDFs, invoices, and unstructured text at scale.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">API Integration</span> — Wiring OpenAI, Anthropic, or local models directly into your existing software.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 5: Business Automation and Management (N8N) -->
+  <section id="automation" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="git-merge" size="sm" />
+              N8N Automation
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Make your software talk
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Manual data entry and repetitive copy-pasting drain your team's time. We use N8N — a powerful, node-based automation platform — to connect your fragmented apps.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            From syncing CRM leads to triggering fulfillment workflows when a payment succeeds, we build resilient, logic-driven pipelines that run quietly in the background, 24/7.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="repeat" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Custom Workflows</span> — Mapping and building complex conditional logic that off-the-shelf tools can't handle.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">API Bridges</span> — Connecting legacy software to modern cloud apps via webhooks and REST APIs.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Error Handling</span> — Built-in alerts and fallback mechanisms so you never lose data if an external service goes down.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 6: Email Service Setup, Automation, and Maintainence. -->
+  <section id="email" class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:order-2 glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="mail" size="sm" />
+              Email Services
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Inbox placement guaranteed
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Setting up email involves more than creating an account. Poorly configured domains lead to spam folders, dropped client communication, and damaged domain reputation.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            We handle the technical plumbing — strict DNS records, deliverability optimization — alongside building automated drip campaigns that engage your audience effectively.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:order-1 glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="send" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">DNS Security</span> — Perfect configuration of SPF, DKIM, and DMARC records to protect your brand identity.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Transactional Routing</span> — Setting up dedicated IPs and mail agents (Mailgun, SendGrid) for critical system alerts.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Marketing Automation</span> — Designing subscriber journeys, welcome sequences, and behavioral trigger emails.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 7: Legacy Data Migration and DeDupe -->
+  <section id="data-migration" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="database" size="sm" />
+              Data Migration
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Clean logic, safe extraction
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            Moving to a new CRM, ERP, or custom platform shouldn't mean leaving your history behind. But legacy databases are often messy, redundant, and structurally incompatible.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            We specialize in carefully extracting historical data, purging duplicates, and transforming schemas so you can hit the ground running in your new environment without missing a single vital record.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="files" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Data Cleansing</span> — Formatting dates, standardizing phone numbers, and repairing corrupted historical entries.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Deduplication</span> — Merging conflicting customer profiles and removing outdated identical entries securely.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Schema Transformation</span> — Mapping old table logic to your new systems, ensuring relational data stays intact.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 8: Self Hosting Setup -->
+  <section id="infrastructure" class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:order-2 glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="server" size="sm" />
+              Self Hosting
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Own your infrastructure
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            The cloud is convenient, but renting software rapidly inflates operational costs. Many powerful enterprise-grade applications offer free, open-source versions you can run yourself.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+            We architect, deploy, and secure private server environments. You retain complete ownership of your data, bypass per-seat SaaS licensing fees, and operate under your own rules.
+          </p>
+        </div>
+        <div class="sm:max-w-xl sm:mx-auto glitch:order-1 glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="shield" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">What's included</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Docker Deployments</span> — Containerized setups for tools like Nextcloud, Bitwarden, N8N, or Metabase.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Network Security</span> — Hardened reverse proxies, automated SSL renewals, and strict firewall configurations.
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                <p class="text-sm text-foreground-muted leading-relaxed">
+                  <span class="font-semibold text-foreground">Backup Strategy</span> — Automated, off-site, and encrypted backup scripts so you can recover from failures in minutes.
+                </p>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>How it works</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            A clear, honest process
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          Four stages, one point of contact, no surprises.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Card hover data-reveal>
+          <div class="flex flex-col items-center text-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 font-bold text-base shrink-0">
+              1
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-foreground">Discovery</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                A conversation about your goals, current bottlenecks, and what success looks like. No obligation.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover data-reveal data-reveal-delay="1">
+          <div class="flex flex-col items-center text-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 font-bold text-base shrink-0">
+              2
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-foreground">Proposal</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                A clear scope, timeline, and cost. One page, plain language, transparent pricing.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover data-reveal data-reveal-delay="2">
+          <div class="flex flex-col items-center text-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 font-bold text-base shrink-0">
+              3
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-foreground">Architecture & Build</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Short cycles with regular check-ins. You see the solutions evolve as they are integrated.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover data-reveal data-reveal-delay="3">
+          <div class="flex flex-col items-center text-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 font-bold text-base shrink-0">
+              4
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-foreground">Launch & Support</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Deploy, hand over documentation, and stay available. Ongoing iteration is straightforward.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="glitch:hidden mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <Badge variant="brand" pill class="mb-6">Let's talk</Badge>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Have a project in mind?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        Send a short note about your infrastructure, automation, or web needs. I read every message and reply within a working day.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact" class="cta-btn-brand">
+          Start a project
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/about">
+          More about me
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </div>
+
+    <LetterGlitchBand>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Have a project in mind?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        Send a short note about your infrastructure, automation, or web needs. I read every message and reply within a working day.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact" class="hero-btn-brand">
+          Start a project
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/about">
+          More about me
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </LetterGlitchBand>
+  </section>
+</PageLayout>
+
+<style is:global>
+  /* Gentle "scroll down" bounce on the hero jump-button arrows */
+  .services-hero .hero-jump-arrow {
+    animation: hero-jump-arrow-bounce 1.8s ease-in-out infinite;
+  }
+  @keyframes hero-jump-arrow-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(4px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .services-hero .hero-jump-arrow { animation: none; }
+  }
+
+  /* Anchor links on /services should land flush against fixed header. */
+  html { scroll-padding-top: 4rem; }
+  @media (max-height: 600px) { html { scroll-padding-top: 4rem; } }
+  @media (min-width: 1024px) { html { scroll-padding-top: 4rem; } }
+
+  /* Instant reveal for targets clicked via anchor link */
+  .reveal-instant[data-reveal],
+  .reveal-instant [data-reveal],
+  .reveal-instant[data-reveal-children] > *,
+  .reveal-instant [data-reveal-children] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initServicesHeroJump() {
+      const hero = document.querySelector('.services-hero');
+      if (!hero) return;
+      const buttons = hero.querySelectorAll('a[href^="#"]');
+      if (!buttons.length) return;
+
+      function revealUpToAndIncluding(target) {
+        const reveals = document.querySelectorAll('[data-reveal], [data-reveal-children]');
+        Array.prototype.forEach.call(reveals, function (el) {
+          const targetFollowsEl =
+            el.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING;
+          if (el === target || target.contains(el) || targetFollowsEl) {
+            el.classList.add('reveal-instant', 'is-visible');
+          }
+        });
+      }
+
+      const targetIds = [];
+      Array.prototype.forEach.call(buttons, function (btn) {
+        const hash = btn.getAttribute('href');
+        const id = hash ? hash.slice(1) : '';
+        if (id) targetIds.push(id);
+        btn.addEventListener('click', function () {
+          const target = id && document.getElementById(id);
+          if (target) revealUpToAndIncluding(target);
+        });
+      });
+
+      const initialId = location.hash ? location.hash.slice(1) : '';
+      if (initialId && targetIds.indexOf(initialId) !== -1) {
+        const target = document.getElementById(initialId);
+        if (target) revealUpToAndIncluding(target);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initServicesHeroJump);
+    } else {
+      initServicesHeroJump();
+    }
+  })();
+</script>

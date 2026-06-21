@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "selectLanguage": "Select language",
+    "currentLanguage": "Current language",
+    "items": {
+      "services": "Services",
+      "projects": "Projects",
+      "blog": "Blog",
+      "about": "About",
+      "contact": "Contact"
+    }
+  },
+  "common": {
+    "readMore": "Read more",
+    "loading": "Loading…",
+    "backToTop": "Back to top",
+    "search": "Search",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Latest articles and updates",
+    "readingTime": "{minutes} min read",
+    "publishedOn": "Published on {date}",
+    "updatedOn": "Updated on {date}",
+    "writtenBy": "Written by {author}",
+    "tagsLabel": "Tags",
+    "featured": "Featured",
+    "draft": "Draft",
+    "noPostsFound": "No posts found.",
+    "tableOfContents": "Table of contents",
+    "shareThisPost": "Share this post",
+    "relatedPosts": "Related Posts",
+    "share": "Share:",
+    "shareOn": "Share on {platform}",
+    "copyLink": "Copy link"
+  },
+  "comments": {
+    "title": "Comments"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Things I've built",
+    "viewProject": "View project",
+    "viewSource": "View source",
+    "noProjectsFound": "No projects found."
+  },
+  "pagination": {
+    "page": "Page {current} of {total}",
+    "label": "Pagination",
+    "previousPage": "Previous page",
+    "nextPage": "Next page"
+  },
+  "errors": {
+    "pageNotFound": "Page not found",
+    "pageNotFoundMessage": "The page you're looking for doesn't exist or has moved.",
+    "goHome": "Go to homepage",
+    "badge": "404 — page not found",
+    "titleLead": "Page not",
+    "titleHighlight": "found.",
+    "description": "This page has moved, been removed, or never existed in the first place. Let's get you back on track.",
+    "backHome": "Back to home",
+    "browseBlog": "Browse the blog",
+    "tryInstead": "Try one of these instead",
+    "projectsDesc": "Selected work and case studies.",
+    "blogDesc": "Notes on design, code, and the craft.",
+    "contactTitle": "Contact",
+    "contactDesc": "Start a conversation about your project."
+  },
+  "newsletter": {
+    "heading": "Subscribe to the newsletter",
+    "description": "Get the latest posts in your inbox.",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing…",
+    "success": "Thanks for subscribing!",
+    "genericError": "Something went wrong",
+    "error": "Subscription failed. Please try again."
+  },
+  "contact": {
+    "heading": "Get in touch",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Message sent successfully!",
+    "genericError": "Something went wrong",
+    "error": "Failed to send message. Please try again."
+  },
+  "theme": {
+    "selectTheme": "Select theme",
+    "lightMode": "Light mode",
+    "darkMode": "Dark mode",
+    "systemMode": "System",
+    "toggleTheme": "Toggle theme"
+  },
+  "footer": {
+    "copyright": "© {year} {siteName}. All rights reserved.",
+    "builtWith": "Built with Astro Rocket",
+    "followOn": "Follow us on {platform}"
+  }
+}

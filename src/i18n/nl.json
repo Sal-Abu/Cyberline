@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "skipToContent": "Naar inhoud",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "selectLanguage": "Selecteer taal",
+    "currentLanguage": "Huidige taal",
+    "items": {
+      "services": "Diensten",
+      "projects": "Projecten",
+      "blog": "Blog",
+      "about": "Over",
+      "contact": "Contact"
+    }
+  },
+  "common": {
+    "readMore": "Lees meer",
+    "loading": "Laden…",
+    "backToTop": "Terug naar boven",
+    "search": "Zoeken",
+    "submit": "Verzenden",
+    "cancel": "Annuleren",
+    "next": "Volgende",
+    "previous": "Vorige"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Recente artikelen en updates",
+    "readingTime": "{minutes} min leestijd",
+    "publishedOn": "Gepubliceerd op {date}",
+    "updatedOn": "Bijgewerkt op {date}",
+    "writtenBy": "Geschreven door {author}",
+    "tagsLabel": "Tags",
+    "featured": "Uitgelicht",
+    "draft": "Concept",
+    "noPostsFound": "Geen berichten gevonden.",
+    "tableOfContents": "Inhoudsopgave",
+    "shareThisPost": "Deel dit bericht",
+    "relatedPosts": "Gerelateerde berichten",
+    "share": "Delen:",
+    "shareOn": "Deel op {platform}",
+    "copyLink": "Link kopiëren"
+  },
+  "comments": {
+    "title": "Reacties"
+  },
+  "projects": {
+    "title": "Projecten",
+    "description": "Dingen die ik heb gebouwd",
+    "viewProject": "Bekijk project",
+    "viewSource": "Bekijk broncode",
+    "noProjectsFound": "Geen projecten gevonden."
+  },
+  "pagination": {
+    "page": "Pagina {current} van {total}",
+    "label": "Paginering",
+    "previousPage": "Vorige pagina",
+    "nextPage": "Volgende pagina"
+  },
+  "errors": {
+    "pageNotFound": "Pagina niet gevonden",
+    "pageNotFoundMessage": "De pagina die je zoekt bestaat niet of is verplaatst.",
+    "goHome": "Naar de homepagina",
+    "badge": "404 — pagina niet gevonden",
+    "titleLead": "Pagina niet",
+    "titleHighlight": "gevonden.",
+    "description": "Deze pagina is verplaatst, verwijderd of heeft nooit bestaan. Laten we je weer op weg helpen.",
+    "backHome": "Terug naar home",
+    "browseBlog": "Bekijk de blog",
+    "tryInstead": "Probeer een van deze",
+    "projectsDesc": "Geselecteerd werk en casestudy's.",
+    "blogDesc": "Aantekeningen over ontwerp, code en het vak.",
+    "contactTitle": "Contact",
+    "contactDesc": "Begin een gesprek over je project."
+  },
+  "newsletter": {
+    "heading": "Abonneer op de nieuwsbrief",
+    "description": "Ontvang de nieuwste berichten in je inbox.",
+    "emailPlaceholder": "Voer je e-mailadres in",
+    "subscribe": "Abonneren",
+    "subscribing": "Bezig met abonneren…",
+    "success": "Bedankt voor je aanmelding!",
+    "genericError": "Er ging iets mis",
+    "error": "Aanmelding mislukt. Probeer het opnieuw."
+  },
+  "contact": {
+    "heading": "Neem contact op",
+    "name": "Naam",
+    "email": "E-mail",
+    "subject": "Onderwerp",
+    "message": "Bericht",
+    "send": "Verstuur bericht",
+    "sending": "Bezig met verzenden…",
+    "success": "Bericht succesvol verzonden!",
+    "genericError": "Er ging iets mis",
+    "error": "Verzenden mislukt. Probeer het opnieuw."
+  },
+  "theme": {
+    "selectTheme": "Selecteer thema",
+    "lightMode": "Lichte modus",
+    "darkMode": "Donkere modus",
+    "systemMode": "Systeem",
+    "toggleTheme": "Wissel thema"
+  },
+  "footer": {
+    "copyright": "© {year} {siteName}. Alle rechten voorbehouden.",
+    "builtWith": "Gebouwd met Astro Rocket",
+    "followOn": "Volg ons op {platform}"
+  }
+}

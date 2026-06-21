@@ -1,0 +1,556 @@
+---
+import LandingLayout from '@/layouts/LandingLayout.astro';
+import { Hero } from '@/components/hero';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
+import StackMarquee from '@/components/landing/StackMarquee.astro';
+import { getCollection } from 'astro:content';
+import siteConfig from '@/config/site.config';
+
+
+const projectItems = await getCollection('projects');
+const featuredProjects = projectItems
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+    return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
+  })
+  .slice(0, 4);
+---
+
+<LandingLayout
+  title="Cyberline Solutions"
+  description="Your technical experts"
+  image="/og-default.svg"
+  includePersonSchema={false}
+  includeProfessionalServiceSchema={true}
+>
+  <!-- Hero -->
+  <Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator fullHeight>
+    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Available for new projects</Badge>
+
+    <h1 slot="title" class="!text-[clamp(2rem,11.2vw,3rem)] sm:!text-5xl md:!text-6xl lg:!text-7xl">
+      <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor] whitespace-nowrap">Cyberline Solutions</span>
+    </h1>
+
+    <p slot="description">
+    Your technical experts.
+    </p>
+
+   <Fragment slot="actions">
+      <Button size="lg" href="/services">
+        Services
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+      <Button size="lg" variant="outline" href="/contact">
+        <Icon name="rocket" size="sm" />
+        Contact
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+    </Fragment>
+  </Hero>
+
+  <!-- Services Section -->
+<section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Services</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            What we do
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
+          From concept to launch.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        
+        <Card hover href="/services" class="group flex flex-col" data-reveal>
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="layout" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Web Development & Management</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Modern, fast sites built to scale. We handle the code, infrastructure, and ongoing maintenance so you can focus on your business.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="1">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="trending-down" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">IT Consulting & Cost Cutting</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Strategic audits of your tech stack to optimize workflows, eliminate redundancies, and significantly reduce operational bloat.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="2">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="shopping-bag" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Digital Storefront Setup</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Complete e-commerce solutions tailored to your brand, from optimized payment gateways to inventory management.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="3">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="cpu" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">AI Tooling for Business</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Integrate cutting-edge AI solutions to accelerate your workflows, enhance customer support, and unlock new data insights.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="4">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="git-merge" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Business Automation (N8N)</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Connect your fragmented apps and automate repetitive processes using powerful, customized N8N workflows.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="5">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="mail" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Email Service & Automation</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Reliable email infrastructure, deliverability optimization, and automated drip campaigns that land right in the inbox.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="6">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="database" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Data Migration & DeDupe</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Safely move, clean, and consolidate your historical data into modern systems without losing a single vital record.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="7">
+          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="server" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Self Hosting Setup</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Regain control of your data and reduce SaaS subscription bloat by deploying open-source alternatives on your own infrastructure.
+              </p>
+              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
+                Learn more
+                <Icon name="arrow-right" size="sm" />
+              </span>
+            </div>
+          </div>
+        </Card>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Testimonials</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            What our clients say
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted">
+          Testaments to our amazing service!
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Testimonial 1 -->
+        <Card variant="elevated" padding="lg" hover data-reveal>
+          <div class="flex flex-col h-full gap-4">
+            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
+              {[...Array(5)].map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
+              "The new site launched on time and hit every goal we set. Performance improved dramatically — load times dropped and the feedback from our customers has been overwhelmingly positive."
+            </blockquote>
+            <div class="flex items-center gap-3 pt-4 border-t border-border">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
+                A
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-foreground">Alex Morgan</p>
+                <p class="text-xs text-foreground-muted">Founder, Bright Studio</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Testimonial 2 -->
+        <Card variant="elevated" padding="lg" hover data-reveal data-reveal-delay="1">
+          <div class="flex flex-col h-full gap-4">
+            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
+              {[...Array(5)].map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
+              "Straightforward from first conversation to final handover. The right questions were asked, we were kept in the loop throughout, and the end result exceeded what we imagined. Would recommend without hesitation."
+            </blockquote>
+            <div class="flex items-center gap-3 pt-4 border-t border-border">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
+                S
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-foreground">Sarah Chen</p>
+                <p class="text-xs text-foreground-muted">Operations Manager, Luma</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+<!-- About Teaser -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12">
+        
+        <!-- Left text column -->
+        <div class="flex flex-col justify-center sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 mb-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">About Us</Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Your Complete Technology Partner<br />
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty mb-4 sm:mb-0 sm:max-w-xl glitch:mb-4 glitch:max-w-none">
+            We architect, deploy, and manage the systems that power modern businesses. With 10 years of hands-on experience{siteConfig.address?.city ? `, based in ${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}` : ''}, we serve as the strategic IT backbone for clients worldwide.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed text-pretty mb-8 sm:max-w-xl glitch:max-w-none sm:hidden glitch:block">
+            From reducing SaaS bloat to building high-performance web storefronts and automating daily workflows, we deploy solutions that actively improve your bottom line.
+          </p>
+          <Button variant="outline" href="/about" class="self-start sm:self-center glitch:self-start sm:hidden glitch:inline-flex">
+            More about Cyberline Solutions
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+
+        <!-- Right cards column (Expanded to 8 cards) -->
+        <Card variant="elevated" padding="lg" class="h-full flex flex-col" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <p class="text-sm text-foreground mb-5 text-center sm:hidden glitch:block"></p>
+          <!-- Grid updated to handle 8 items: 2 cols on mobile, 4 cols on larger screens -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 glitch:grid-cols-4 gap-3 flex-1 auto-rows-fr">
+            
+            <!-- Card 1 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="history" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">10 Years Experience</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="server" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Infrastructure Control</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="git-merge" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">N8N Automation</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="trending-down" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Cost Optimization</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="cpu" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">AI Tooling</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="database" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Secure Migrations</p>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="globe" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Working Worldwide</p>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="map-pin" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Based in <br class="sm:hidden" />{siteConfig.address?.city ?? 'Toronto'}{siteConfig.address?.country ? `, ${siteConfig.address.country}` : ''}</p>
+            </div>
+
+          </div>
+        </Card>
+
+        <!-- Mobile "More about us" button -->
+        <div class="hidden sm:flex justify-center glitch:hidden" data-reveal data-reveal-delay="2">
+          <Button variant="outline" href="/about">
+            More about us
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-6 text-center" data-reveal>
+        <Badge variant="brand" pill>From the blog</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Featured
+        </h2>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post, index) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.id.replace('en/', '')}`}
+            publishedAt={post.data.publishedAt}
+            tags={post.data.tags}
+            author={post.data.author}
+            image={post.data.image}
+            svgSlug={post.data.svgSlug}
+            revealDelay={index}
+            class={index === 3 ? 'hidden sm:block lg:hidden' : undefined}
+          />
+        ))}
+      </div>
+
+      <div class="flex justify-center">
+        <Button variant="outline" href="/blog">
+          View all posts
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </div>
+  </section>
+
+ <!-- Tech stack marquee — its own section in the 2-tone zebra. It follows the secondary Blog section, so it flips to `background` like the next stripe. Hidden on phones (portrait + landscape) via .stack-marquee-section; when it drops out, Blog (secondary) → CTA (background) still alternate, so the zebra holds on mobile too. -->
+  <section class="stack-marquee-section relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Tech stack</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Building with the best
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
+          We use the best of the modern web to build websites.
+        </p>
+      </div>
+
+      <div data-reveal data-reveal-delay="1">
+        <StackMarquee />
+      </div>
+    </div>
+  </section>
+
+ <!-- CTA — secondary by default so it alternates with the Marquee (background) above and the Footer (background) below while the marquee is shown; on phones (marquee hidden) .cta-section reverts it to background so Blog → CTA → Footer still alternates -->
+<section class="cta-section relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <!-- Mobile: flat section, no card -->
+    <div class="glitch:hidden mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <Badge variant="brand" pill class="mb-6">Let's talk</Badge>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Ready to optimize your operations?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        From managing server infrastructure to automating daily workflows and building custom integrations, we are your dedicated technical partner. Tell us what you need.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact" class="cta-btn-brand">
+          Book a consultation
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/about">
+          More about us
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </div>
+
+    <!-- Desktop: contained LetterGlitch band with glass card -->
+    <LetterGlitchBand>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Ready to optimize your operations?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        From managing server infrastructure to automating daily workflows and building custom integrations, we are your dedicated technical partner. Tell us what you need.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact" class="hero-btn-brand">
+          Book a consultation
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/about">
+          More about us
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </LetterGlitchBand>
+  </section>
+
+<script>
+  function initCountup() {
+    const counters = document.querySelectorAll<HTMLElement>('[data-countup]:not([data-countup-init])');
+    if (counters.length === 0) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        const el = entry.target as HTMLElement;
+        const target = parseInt(el.dataset.countup ?? '0', 10);
+        const suffix = el.dataset.suffix ?? '';
+        const duration = 1200;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach((el) => {
+      el.dataset.countupInit = 'true';
+      observer.observe(el);
+    });
+  }
+
+  initCountup();
+</script>
+
+<style is:global>
+  /* Widen the homepage hero description from md upward so the paragraph
+     reads on two lines instead of three on landscape phones, tablets,
+     and all laptop/desktop sizes. Scoped via the unique
+     .hero-dark-gradient class so other heroes keep the default
+     max-w-xl reading measure. */
+  @media (min-width: 768px) {
+    .hero-dark-gradient .hero-title-slot + div {
+      max-width: 48rem;
+    }
+  }
+
+  /* Mobile-phone zebra swap. On phones — portrait (caught by width) and
+     landscape (wider than the md breakpoint, so caught by short height + a
+     coarse/touch pointer, which excludes tablets and laptops) — the marquee
+     band is hidden and the CTA + footer revert to their no-marquee colours.
+     The default (tablet/desktop, marquee shown) order is:
+       Blog(secondary) → Marquee(background) → CTA(secondary) → Footer(background)
+     and on phones it collapses to:
+       Blog(secondary) → CTA(background) → Footer(secondary)
+     so every adjacent section alternates in both states. The element+class
+     selectors outrank the Tailwind bg utilities, so no !important is needed. */
+  @media (max-width: 767px) {
+    .stack-marquee-section { display: none; }
+    section.cta-section { background-color: var(--color-background); }
+    footer.home-footer { background-color: var(--color-background-secondary); }
+  }
+  @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
+    .stack-marquee-section { display: none; }
+    section.cta-section { background-color: var(--color-background); }
+    footer.home-footer { background-color: var(--color-background-secondary); }
+  }
+</style>
+
+</LandingLayout>

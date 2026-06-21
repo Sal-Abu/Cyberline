@@ -1,0 +1,183 @@
+---
+/**
+ * Testimonial page
+ * URL: /testimonials
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
+
+// Hardcoded testimonials mapped to your core services
+const testimonials = [
+  {
+    quote: "The new site launched on time and hit every goal we set. Performance improved dramatically — load times dropped and the feedback from our customers has been overwhelmingly positive.",
+    author: "Alex Morgan",
+    role: "Founder",
+    company: "Bright Studio",
+    icon: "trending-down"
+  },
+  {
+    quote: "The custom N8N workflows they deployed completely changed how we operate. What used to be hours of manual data entry between our CRM and accounting software now happens instantly and flawlessly.",
+    author: "Sarah Chen",
+    role: "Operations Manager",
+    company: "Luma",
+    icon: "git-merge"
+  },
+  {
+    quote: "We were terrified of migrating our 10-year-old legacy database, but the team at Cyberline handled it perfectly. They cleansed the data, removed duplicates, and mapped it to our new system with zero downtime.",
+    author: "Michael Vance",
+    role: "IT Director",
+    company: "LegacyHealth Providers",
+    icon: "database"
+  },
+  {
+    quote: "Our new Astro storefront is unbelievably fast. By removing the JavaScript bloat and optimizing our e-commerce flow, our conversion rates have jumped by 25% since launch.",
+    author: "David Chen",
+    role: "Founder & CEO",
+    company: "E-Shop Direct",
+    icon: "shopping-bag"
+  },
+  {
+    quote: "Moving to a self-hosted infrastructure gave us total control over our sensitive data. Cyberline architected the entire environment and their proactive monitoring means we never worry about security.",
+    author: "Sarah Jenkins",
+    role: "Chief Technology Officer",
+    company: "SecureMed Systems",
+    icon: "server"
+  },
+  {
+    quote: "The internal AI chatbot they trained on our company documentation has cut our new-hire onboarding time in half. It's practical, secure, and completely localized to our servers.",
+    author: "Emily Rogers",
+    role: "HR Director",
+    company: "InnovateCorp",
+    icon: "cpu"
+  },
+  {
+    quote: "For years we struggled with our transactional emails landing in spam folders. Cyberline reconfigured our DNS records and routing logic, and now our deliverability is flawless.",
+    author: "Alex Kim",
+    role: "Head of Marketing",
+    company: "SaaSFlow",
+    icon: "mail"
+  },
+  {
+    quote: "Cyberline Solutions acts as our dedicated CTO. They don't just fix issues; they anticipate them. Their strategic guidance has been invaluable to scaling our technical infrastructure safely.",
+    author: "Rachel Adams",
+    role: "Managing Partner",
+    company: "NextGen Legal",
+    icon: "shield-check"
+  }
+];
+---
+
+<PageLayout
+  title="Testimonials | Cyberline Solutions"
+  description="Don't just take our word for it. Read how we've helped businesses streamline their operations, cut costs, and scale their infrastructure."
+  eagerReveal
+  footerBackground="secondary"
+>
+  <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="message-square" size="sm" />
+      Client Stories
+    </Badge>
+
+    <h1 slot="title">
+      Trusted by <span class="text-brand-500">industry leaders</span>
+    </h1>
+
+    <p slot="description">
+      We let our results speak for themselves. Here is what our partners have to say about our infrastructure, automation, and web solutions.
+    </p>
+  </Hero>
+
+  <!-- Testimonials Grid -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      
+      <div class="grid gap-6 md:grid-cols-2">
+        {testimonials.map((testimonial, i) => (
+          <Card 
+            variant="elevated" 
+            padding="lg" 
+            class="flex flex-col justify-between h-full group"
+            data-reveal 
+            data-reveal-delay={i % 2 === 0 ? 0 : 1}
+          >
+            <div>
+              <div class="mb-6 flex justify-between items-start">
+                <Icon name="quote" class="text-brand-500/20 w-12 h-12" />
+                <div class="w-10 h-10 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-500 group-hover:scale-110 group-hover:bg-brand-500/20 transition-all">
+                  <Icon name={testimonial.icon} size="sm" />
+                </div>
+              </div>
+              <p class="text-lg text-foreground leading-relaxed mb-8">
+                "{testimonial.quote}"
+              </p>
+            </div>
+            
+            <div class="flex items-center gap-4 pt-6 border-t border-border">
+              <div class="w-12 h-12 rounded-full bg-background flex items-center justify-center border border-border text-foreground-muted font-display font-bold">
+                {testimonial.author.charAt(0)}
+              </div>
+              <div>
+                <p class="font-bold text-foreground">{testimonial.author}</p>
+                <p class="text-sm text-foreground-muted">{testimonial.role}, <span class="text-foreground">{testimonial.company}</span></p>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+ <!-- CTA -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background">
+    <!-- Mobile: flat section, no card -->
+    <div class="glitch:hidden mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <Badge variant="brand" pill class="mb-6">Let's talk</Badge>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Ready to transform your tech stack?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        We build and optimize with the same care and craft you see here. If you're ready to cut costs and streamline your operations, let's see what we can do together.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact" class="cta-btn-brand">
+          Book a Consultation
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/services">
+          View our services
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </div>
+
+    <!-- Desktop: contained LetterGlitch band with glass card -->
+    <LetterGlitchBand>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Ready to transform your tech stack?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        We build and optimize with the same care and craft you see here. If you're ready to cut costs and streamline your operations, let's see what we can do together.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact" class="hero-btn-brand">
+          Book a Consultation
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/services">
+          View our services
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+      </div>
+    </LetterGlitchBand>
+  </section>
+</PageLayout>
+```eof
+
+The page is entirely self-contained now. I used your `<Card>` component to create elevated boxes, added a nice large quote icon watermark to the top left of each, included the specific service icon dynamically mapped to the top right of each card, and built a clean "author profile" row at the bottom of the card!

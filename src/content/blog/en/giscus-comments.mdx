@@ -1,0 +1,139 @@
+---
+title: "Comments on Blog Posts — Giscus or Cusdis, Lazy-Loaded"
+description: "Astro Rocket's blog comments are now pluggable: pick Giscus (GitHub Discussions) or the self-hostable, privacy-friendly Cusdis. Both lazy-load on scroll — skip them and you pay nothing."
+publishedAt: 2026-05-09
+updatedAt: 2026-06-21
+author: "Hans Martens"
+tags: ["astro-rocket", "features", "blog", "comments", "giscus", "cusdis"]
+featured: false
+locale: en
+image: "../../../assets/blog/giscus-comments.svg"
+svgSlug: "giscus-comments"
+imageAlt: "Three speech bubbles representing a comment thread, on a brand-coloured background"
+---
+
+Astro Rocket supports comments at the bottom of blog posts. The feature is **pluggable**: a single `provider` switch picks between [Giscus](https://giscus.app) (comments stored in a GitHub Discussions thread) and [Cusdis](https://cusdis.com) (a lightweight, privacy-friendly widget you can self-host). Either way: no database to run yourself, and the same careful wiring underneath.
+
+It's **off by default**. When disabled, no JavaScript and no network requests are added to your blog pages. When enabled, the provider's script is **lazy-loaded** — it only downloads when the reader actually scrolls toward the comments section. Readers who never scroll that far pay zero performance cost.
+
+> **Kept current.** This post originally covered only Giscus. Comments are now pluggable, and Cusdis was added as an alternative — it came out of a community request, since not everyone wants to require a GitHub account to leave a comment, and some people want to host and moderate the comment data themselves. The setup below reflects the current, two-provider system. If you're already on Giscus, nothing changed: `provider` defaults to `'giscus'`.
+
+## Two providers, one switch
+
+Both providers are wired the same way — server-rendered placeholder with reserved height (no layout shift), lazy-loaded on scroll, theme and language that follow the site by default. The difference is the backend:
+
+| | **Giscus** | **Cusdis** |
+|---|---|---|
+| Stores comments in | A GitHub Discussions thread | Cusdis (hosted) or your own instance |
+| Commenter needs an account? | Yes — a GitHub login | No — name + email, optional |
+| You moderate / back up the data? | Via GitHub Discussions | Yourself, on a host you control |
+| Reactions | 👍 ❤️ 🎉 etc. | — |
+| Best for | Dev-audience blogs already on GitHub | General audiences and self-hosters |
+
+Pick Giscus if your readers are developers who already have GitHub accounts and you're happy storing the thread in a public repo. Pick Cusdis if you'd rather not gate commenting behind a GitHub login, or you want to own and moderate the comment data on your own server.
+
+## Step 1 — Set up your provider
+
+### If you choose Giscus
+
+1. Go to [giscus.app](https://giscus.app).
+2. Pick the GitHub repo you want to host the discussions in. The repo must be **public** and have **Discussions** enabled (Settings → Features → Discussions).
+3. Install the [Giscus app](https://github.com/apps/giscus) on that repo.
+4. Choose the discussion category (most people use "General" or create a dedicated "Comments" category).
+5. Copy the four values shown on the page: `data-repo`, `data-repo-id`, `data-category`, and `data-category-id`.
+
+### If you choose Cusdis
+
+1. Sign up at [cusdis.com](https://cusdis.com) — or [self-host](https://cusdis.com/doc#/self-host/index) it (Docker, Vercel, etc.) if you want to own the data.
+2. Create a website in the dashboard.
+3. Copy the **App ID** from the embed code it gives you (a UUID).
+4. Self-hosting? Note your instance URL — you'll set it as `host` so the widget and its API point at your server instead of `cusdis.com`.
+
+## Step 2 — Configure Astro Rocket
+
+Open `src/config/site.config.ts` and find `articleFeatures.comments`. Flip `enabled` to `true`, set `provider`, and fill in that provider's block:
+
+```ts
+articleFeatures: {
+  comments: {
+    enabled: true,
+    provider: 'giscus', // 'giscus' | 'cusdis'
+    giscus: {
+      repo: 'you/your-repo',
+      repoId: 'R_kgDOAbcdef',
+      category: 'General',
+      categoryId: 'DIC_kwDOAbcdef',
+      mapping: 'pathname',
+      reactionsEnabled: true,
+      theme: '', // empty → follow the site's light/dark mode
+      lang: '',  // empty → follow the site's current locale
+    },
+    cusdis: {
+      appId: '00000000-0000-0000-0000-000000000000',
+      host: 'https://cusdis.com', // your URL when self-hosting
+      theme: '', // empty → follow the site's light/dark mode
+      lang: '',  // empty → follow the site's current locale
+    },
+  },
+},
+```
+
+Only the block matching `provider` needs real values — leave the other one as-is. Build, deploy, and every blog post now has a comments section underneath.
+
+The component **fails soft**: if the selected provider isn't fully configured (Giscus missing any of its four IDs, or Cusdis missing its App ID), it renders nothing rather than breaking the page. A half-finished `enabled: true` just stays invisible until you complete setup.
+
+## Theme and language follow the site
+
+Leave `theme` and `lang` empty (the default) and the embed mirrors your site automatically:
+
+- **Theme** follows the visitor's live light/dark choice, resolved from the same [colour-mode system](/blog/colour-mode-system) the rest of the site uses. Giscus updates instantly when the visitor toggles (it has a live `postMessage` API). Cusdis has no live theme API, so on a toggle the thread is re-rendered — a brief reload. To opt out of that, set Cusdis's `theme` to `'auto'` (OS preference), `'light'`, or `'dark'`.
+- **Language** follows the page's current locale, so a `/nl/blog/...` post loads the comment widget in Dutch with no extra config.
+
+Set either field to a specific value to override the site-following behaviour.
+
+## Per-post override
+
+Some posts don't need comments — announcements, legal pages, or quick updates. Hide comments on a single post with frontmatter:
+
+```yaml
+---
+title: My announcement
+comments: false
+---
+```
+
+The site-wide setting stays on; just this post skips the comments block.
+
+## How the lazy-loading works
+
+If the comment script were loaded on every article page-load, it would add roughly 100 KB of network traffic and a third-party iframe to every blog post. That hurts Lighthouse scores and feels especially wasteful for readers who only skim the first paragraph.
+
+So the component does this instead, regardless of provider:
+
+1. On the server, it renders an empty `<div>` with a reserved `min-height: 360px` (so there's no layout shift when the iframe later appears).
+2. On the client, an `IntersectionObserver` watches that `<div>`.
+3. When the reader scrolls within `300px` of the comments area, the provider's script is appended to the DOM and the widget loads.
+
+Readers who bounce or skim → 0 KB. Readers who scroll to the bottom → the comments are ready by the time they arrive. To make that first request even faster, `BaseLayout` adds a `<link rel="preconnect">` to the active provider's host when comments are enabled, warming the DNS+TLS handshake before the script fires.
+
+## What it costs
+
+| Scenario | Cost |
+|---|---|
+| Comments disabled (default) | 0 KB, 0 requests |
+| Enabled, reader doesn't scroll to comments | ~0.5 KB inline JS |
+| Enabled, reader scrolls to comments | ~100 KB (Giscus) / much less (Cusdis) — async, below-the-fold, no LCP impact |
+
+The reserved `min-height` prevents CLS. The `async` load prevents render blocking. The `IntersectionObserver` prevents wasted requests. And because the comments component is a thin dispatcher, **only the provider you selected ships its client script** — the other one is never bundled.
+
+## Where it lives
+
+- Dispatcher: `src/components/blog/Comments.astro` (renders the selected provider)
+- Providers: `src/components/blog/CommentsGiscus.astro` and `CommentsCusdis.astro`
+- Wiring: `src/layouts/BlogLayout.astro`
+- Config: `src/config/site.config.ts` → `articleFeatures.comments`
+- Per-post override: `comments: false` in MDX frontmatter
+
+For the full tour of `site.config.ts`, see the <PostLink uid="configuration-guide">configuration guide</PostLink>.
+
+That's the entire feature. Pick a provider, paste a few values into your config, and your blog has a real comment thread — without a database, and without a performance hit.

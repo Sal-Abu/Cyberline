@@ -1,0 +1,44 @@
+---
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const visibleProjects = await getCollection('projects', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+
+  const routableProjects = visibleProjects.filter((p) => !p.data.placeholder);
+
+  return routableProjects.map((project) => ({
+    params: { slug: project.id.replace(/\.mdx?$/, '') },
+    props: {
+      project,
+      related: visibleProjects
+        .filter((p) => p.id !== project.id)
+        .sort((a, b) => a.data.order - b.data.order)
+        .slice(0, 3),
+    },
+  }));
+}
+
+const { project, related } = Astro.props;
+const { Content, headings } = await render(project);
+---
+
+<ProjectLayout
+  title={project.data.title}
+  description={project.data.description}
+  meta={project.data.meta}
+  url={project.data.url}
+  repo={project.data.repo}
+  image={project.data.image}
+  imageAlt={project.data.imageAlt}
+  gallery={project.data.gallery}
+  tags={project.data.tags}
+  slug={project.id.replace(/\.mdx?$/, '')}
+  related={related}
+  headings={headings}
+  toc={project.data.toc}
+>
+  <Content />
+</ProjectLayout>
