@@ -1,0 +1,46 @@
+---
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  // 1. Updated to query the 'testimonials' collection
+  const visibleTestimonials = await getCollection('testimonials', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+
+  const routableTestimonials = visibleTestimonials.filter((t) => !t.data.placeholder);
+
+  return routableTestimonials.map((testimonial) => ({
+    // The slug now safely passes "en/astro-rocket" to [...slug].astro
+    params: { slug: testimonial.id.replace(/\.mdx?$/, '') },
+    props: {
+      testimonial,
+      related: visibleTestimonials
+        .filter((t) => t.id !== testimonial.id)
+        .sort((a, b) => a.data.order - b.data.order)
+        .slice(0, 3),
+    },
+  }));
+}
+
+const { testimonial, related } = Astro.props;
+const { Content, headings } = await render(testimonial);
+---
+
+<ProjectLayout
+  title={testimonial.data.title}
+  description={testimonial.data.description}
+  meta={testimonial.data.meta}
+  url={testimonial.data.url}
+  repo={testimonial.data.repo}
+  image={testimonial.data.image}
+  imageAlt={testimonial.data.imageAlt}
+  gallery={testimonial.data.gallery}
+  tags={testimonial.data.tags}
+  slug={testimonial.id.replace(/\.mdx?$/, '')}
+  related={related}
+  headings={headings}
+  toc={testimonial.data.toc}
+>
+  <Content />
+</ProjectLayout>
