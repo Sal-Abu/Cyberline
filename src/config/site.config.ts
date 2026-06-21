@@ -134,7 +134,7 @@ const siteConfig: SiteConfig = {
   url: SITE_URL || 'https://cyberlinesolutions.com',
   ogImage: '/og-default.svg',
   author: 'Sal Abu',
-  email: '<anything>@vexauxkri.resend.app',
+  email: 'contact@mail.cyberlinesolutions.com',
   address: {
     street: '',
     city: 'Toronto',
