@@ -134,7 +134,7 @@ const resolvedLegalLinks: LegalLink[] = legalLinks ?? getLegalLinks(locale);
 //   translated locales use the localized `footer.copyright` string (which
 //   omits the credit). Both support {year} and {siteName} placeholders.
 const defaultCopyright =
-  '© {year} {siteName}. Designed by <a href="https://hansmartens.dev" class="underline hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">Hans Martens</a>.';
+  '© {year} {siteName}.';
 const copyrightTemplate =
   copyright ?? (locale === defaultLocale ? defaultCopyright : t('footer.copyright', locale));
 

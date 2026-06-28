@@ -8,6 +8,8 @@ import siteConfig from '@/config/site.config';
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   email: z.email('Please enter a valid email address'),
+  phone: z.string().max(50).optional(), // Added phone validation
+  company: z.string().max(100).optional(), // Added company validation
   subject: z.string().max(200).optional(),
   message: z.string().min(10, 'Message must be at least 10 characters').max(5000),
   honeypot: z.string().max(0), // Anti-spam: must be empty
@@ -20,6 +22,8 @@ export const POST: APIRoute = async ({ request }) => {
     const data = {
       name: formData.get('name')?.toString() || '',
       email: formData.get('email')?.toString() || '',
+      phone: formData.get('phone')?.toString() || '',       // Extract phone
+      company: formData.get('company')?.toString() || '',   // Extract company
       subject: formData.get('subject')?.toString() || '',
       message: formData.get('message')?.toString() || '',
       honeypot: formData.get('honeypot')?.toString() || '',
@@ -63,9 +67,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const resend = new Resend(apiKey);
-
     const toEmail = siteConfig.email;
-    const fromEmail = import.meta.env.RESEND_FROM_EMAIL || toEmail;
     const siteLabel = siteConfig.name;
 
     const subject = result.data.subject
@@ -73,13 +75,16 @@ export const POST: APIRoute = async ({ request }) => {
       : `[${siteLabel}] New contact from ${result.data.name}`;
 
     const { error } = await resend.emails.send({
-      from: `Contact Form <${fromEmail}>`,
+      from: `Cyberline Website <noreply@mail.cyberlinesolutions.com>`, // Fixed to verified domain
       to: toEmail,
       replyTo: result.data.email,
       subject,
       html: `
         <p><strong>Name:</strong> ${result.data.name}</p>
         <p><strong>Email:</strong> ${result.data.email}</p>
+        ${result.data.phone ? `<p><strong>Phone:</strong> ${result.data.phone}</p>` : ''}
+        ${result.data.company ? `<p><strong>Company:</strong> ${result.data.company}</p>` : ''}
+        <p><strong>Subject:</strong> ${result.data.subject || 'General Inquiry'}</p>
         <p><strong>Message:</strong></p>
         <p>${result.data.message.replace(/\n/g, '<br>')}</p>
       `,

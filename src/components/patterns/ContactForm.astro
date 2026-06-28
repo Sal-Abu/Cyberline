@@ -31,7 +31,6 @@ const {
   data-generic-error={t('contact.genericError', locale)}
   data-error-message={t('contact.error', locale)}
 >
-  <!-- Name + Email side by side on sm+ -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <Input
       label={t('contact.name', locale)}
@@ -49,11 +48,38 @@ const {
     />
   </div>
 
-  <Input
-    label={t('contact.subject', locale)}
-    name="subject"
-    type="text"
-  />
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <Input
+      label="Company Name (Optional)"
+      name="company"
+      type="text"
+      autocomplete="organization"
+    />
+    <Input
+      label="Phone Number (Optional)"
+      name="phone"
+      type="tel"
+      autocomplete="tel"
+    />
+  </div>
+
+  <div class="space-y-2">
+    <label for="subject" class="text-sm font-medium text-foreground">
+      {t('contact.subject', locale) || 'What can we help you with?'}
+    </label>
+    <select
+      id="subject"
+      name="subject"
+      class="w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors"
+    >
+      <option value="General Inquiry">General Inquiry</option>
+      <option value="Web Development">Web Development & Management</option>
+      <option value="IT Consulting and Support">IT Support & Consulting</option>
+      <option value="Business Automations">Business Automations</option>
+      <option value="AI Tooling">AI Tooling for Business</option>
+      <option value="Support">Existing Client Support</option>
+    </select>
+  </div>
 
   <Textarea
     label={t('contact.message', locale)}
@@ -62,7 +88,6 @@ const {
     rows={5}
   />
 
-  <!-- Honeypot field for spam protection -->
   <div class="hidden" aria-hidden="true">
     <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
   </div>
@@ -85,19 +110,45 @@ const {
 
     if (!form || !button || !message) return;
 
+    // --- Subject URL Parameter Auto-Fill Logic ---
+    const params = new URLSearchParams(window.location.search);
+    const prefillSubject = params.get('subject');
+    const subjectSelect = document.getElementById('subject') as HTMLSelectElement;
+
+    if (prefillSubject && subjectSelect) {
+      subjectSelect.value = prefillSubject;
+      
+      // Highlight briefly so the user sees it updated
+      subjectSelect.style.transition = 'background-color 0.3s ease';
+      subjectSelect.style.backgroundColor = 'rgba(var(--brand-500), 0.1)'; 
+      
+      setTimeout(() => {
+        subjectSelect.style.backgroundColor = '';
+      }, 1500);
+    }
+    // ---------------------------------------------
+
     const successMessage = form.dataset.successMessage || 'Message sent successfully!';
     const originalButtonHTML = button.innerHTML;
 
-    form.addEventListener('submit', async (e) => {
+    // Remove old listeners to prevent duplicates during view transitions
+    const newForm = form.cloneNode(true) as HTMLFormElement;
+    form.parentNode?.replaceChild(newForm, form);
+    
+    // Re-select elements after cloning
+    const newButton = document.getElementById('submit-button') as HTMLButtonElement;
+    const newMessage = document.getElementById('form-message') as HTMLDivElement;
+
+    newForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      button.disabled = true;
-      button.textContent = form.dataset.sending || 'Sending…';
-      message.classList.add('hidden');
+      newButton.disabled = true;
+      newButton.textContent = newForm.dataset.sending || 'Sending…';
+      newMessage.classList.add('hidden');
 
       try {
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
+        const formData = new FormData(newForm);
+        const response = await fetch(newForm.action, {
           method: 'POST',
           body: formData,
         });
@@ -105,23 +156,29 @@ const {
         const data = await response.json();
 
         if (data.success) {
-          message.textContent = successMessage;
-          message.className = 'text-sm text-success';
-          form.reset();
+          newMessage.textContent = successMessage;
+          newMessage.className = 'text-sm text-success';
+          newForm.reset();
+          
+          // Reset the subject to the prefilled option if it exists after successful submission
+          if (prefillSubject && subjectSelect) {
+             const updatedSelect = document.getElementById('subject') as HTMLSelectElement;
+             if (updatedSelect) updatedSelect.value = prefillSubject;
+          }
         } else {
           const errors = data.errors
             ? Object.values(data.errors).flat().join(', ')
-            : (form.dataset.genericError || 'Something went wrong');
-          message.textContent = errors as string;
-          message.className = 'text-sm text-destructive';
+            : (newForm.dataset.genericError || 'Something went wrong');
+          newMessage.textContent = errors as string;
+          newMessage.className = 'text-sm text-destructive';
         }
       } catch {
-        message.textContent = form.dataset.errorMessage || 'Failed to send message. Please try again.';
-        message.className = 'text-sm text-destructive';
+        newMessage.textContent = newForm.dataset.errorMessage || 'Failed to send message. Please try again.';
+        newMessage.className = 'text-sm text-destructive';
       } finally {
-        button.disabled = false;
-        button.innerHTML = originalButtonHTML;
-        message.classList.remove('hidden');
+        newButton.disabled = false;
+        newButton.innerHTML = originalButtonHTML;
+        newMessage.classList.remove('hidden');
       }
     });
   }

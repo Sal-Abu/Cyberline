@@ -83,7 +83,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Web Development & Management</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Modern, fast sites built to scale. We handle the code, infrastructure, and ongoing maintenance so you can focus on your business.
+                High-performance, revenue-generating digital storefronts. We handle the code, security, and ongoing infrastructure maintenance so you can focus on your business.
               </p>
               <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
                 Learn more
@@ -99,27 +99,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               <Icon name="trending-down" size="sm" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">IT Consulting & Cost Cutting</h3>
+                <h3 class="text-base font-semibold text-foreground">IT Consulting, Management, & Support</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Strategic audits of your tech stack to optimize workflows, eliminate redundancies, and significantly reduce operational bloat.
-              </p>
-              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
-                Learn more
-                <Icon name="arrow-right" size="sm" />
-              </span>
-            </div>
-          </div>
-        </Card>
-
-        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="2">
-          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="shopping-bag" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Digital Storefront Setup</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Complete e-commerce solutions tailored to your brand, from optimized payment gateways to inventory management.
+                Proactive administration of your technical environment. From managing hybrid cloud infrastructure and security policies to providing reliable end-user support.
               </p>
               <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
                 Learn more
@@ -137,7 +119,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">AI Tooling for Business</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Integrate cutting-edge AI solutions to accelerate your workflows, enhance customer support, and unlock new data insights.
+                Leverage fine-tuned AI models and custom integrations to accelerate your workflows, enhance data accuracy, and scale your operations intelligently.
               </p>
               <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
                 Learn more
@@ -153,9 +135,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               <Icon name="git-merge" size="sm" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Business Automation (N8N)</h3>
+              <h3 class="text-base font-semibold text-foreground">Business Automations</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Connect your fragmented apps and automate repetitive processes using powerful, customized N8N workflows.
+                Eliminate repetitive tasks and deployment bottlenecks with custom-scripted workflows, seamlessly connecting your fragmented apps and systems.
               </p>
               <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
                 Learn more
@@ -164,61 +146,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             </div>
           </div>
         </Card>
-
-        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="5">
-          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="mail" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Email Service & Automation</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Reliable email infrastructure, deliverability optimization, and automated drip campaigns that land right in the inbox.
-              </p>
-              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
-                Learn more
-                <Icon name="arrow-right" size="sm" />
-              </span>
-            </div>
-          </div>
-        </Card>
-
-        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="6">
-          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="database" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Data Migration & DeDupe</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Safely move, clean, and consolidate your historical data into modern systems without losing a single vital record.
-              </p>
-              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
-                Learn more
-                <Icon name="arrow-right" size="sm" />
-              </span>
-            </div>
-          </div>
-        </Card>
-
-        <Card hover href="/services" class="group flex flex-col" data-reveal data-reveal-delay="7">
-          <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="server" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Self Hosting Setup</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Regain control of your data and reduce SaaS subscription bloat by deploying open-source alternatives on your own infrastructure.
-              </p>
-              <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
-                Learn more
-                <Icon name="arrow-right" size="sm" />
-              </span>
-            </div>
-          </div>
-        </Card>
-
       </div>
     </div>
   </section>
@@ -293,11 +220,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
 <!-- About Teaser -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+<section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12">
         
-        <!-- Left text column -->
         <div class="flex flex-col justify-center sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
           <div class="flex flex-col gap-6 mb-6 sm:items-center glitch:items-start">
             <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">About Us</Badge>
@@ -306,10 +232,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             </h2>
           </div>
           <p class="text-lg text-foreground-muted leading-relaxed text-pretty mb-4 sm:mb-0 sm:max-w-xl glitch:mb-4 glitch:max-w-none">
-            We architect, deploy, and manage the systems that power modern businesses. With 10 years of hands-on experience{siteConfig.address?.city ? `, based in ${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}` : ''}, we serve as the strategic IT backbone for clients worldwide.
+            We architect, deploy, and proactively manage the systems that power modern businesses. From administering secure hybrid cloud environments to providing reliable end-user support, we serve as your strategic IT backbone.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed text-pretty mb-8 sm:max-w-xl glitch:max-w-none sm:hidden glitch:block">
-            From reducing SaaS bloat to building high-performance web storefronts and automating daily workflows, we deploy solutions that actively improve your bottom line.
+            Whether we are reducing SaaS bloat, writing custom automation scripts to eliminate bottlenecks, or building high-performance digital storefronts, we deploy technical solutions that actively improve your bottom line.
           </p>
           <Button variant="outline" href="/about" class="self-start sm:self-center glitch:self-start sm:hidden glitch:inline-flex">
             More about Cyberline Solutions
@@ -317,64 +243,53 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           </Button>
         </div>
 
-        <!-- Right cards column (Expanded to 8 cards) -->
         <Card variant="elevated" padding="lg" class="h-full flex flex-col" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
           <p class="text-sm text-foreground mb-5 text-center sm:hidden glitch:block"></p>
-          <!-- Grid updated to handle 8 items: 2 cols on mobile, 4 cols on larger screens -->
           <div class="grid grid-cols-2 sm:grid-cols-4 glitch:grid-cols-4 gap-3 flex-1 auto-rows-fr">
             
-            <!-- Card 1 -->
             <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="history" class="w-8 h-8 text-brand-500" />
-              <p class="text-xs font-semibold text-foreground">10 Years Experience</p>
+              <Icon name="cloud" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Hybrid Cloud</p>
             </div>
             
-            <!-- Card 2 -->
             <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="server" class="w-8 h-8 text-brand-500" />
-              <p class="text-xs font-semibold text-foreground">Infrastructure Control</p>
+              <Icon name="shield" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Secure Infrastructure</p>
             </div>
 
-            <!-- Card 3 -->
             <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="git-merge" class="w-8 h-8 text-brand-500" />
-              <p class="text-xs font-semibold text-foreground">N8N Automation</p>
+              <Icon name="terminal" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Custom Automation</p>
             </div>
 
-            <!-- Card 4 -->
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="headphones" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">End-User Support</p>
+            </div>
+
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="layout" class="w-8 h-8 text-brand-500" />
+              <p class="text-xs font-semibold text-foreground">Web Storefronts</p>
+            </div>
+
             <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
               <Icon name="trending-down" class="w-8 h-8 text-brand-500" />
               <p class="text-xs font-semibold text-foreground">Cost Optimization</p>
             </div>
 
-            <!-- Card 5 -->
             <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
               <Icon name="cpu" class="w-8 h-8 text-brand-500" />
               <p class="text-xs font-semibold text-foreground">AI Tooling</p>
             </div>
 
-            <!-- Card 6 -->
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="database" class="w-8 h-8 text-brand-500" />
-              <p class="text-xs font-semibold text-foreground">Secure Migrations</p>
-            </div>
-
-            <!-- Card 7 -->
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="globe" class="w-8 h-8 text-brand-500" />
-              <p class="text-xs font-semibold text-foreground">Working Worldwide</p>
-            </div>
-
-            <!-- Card 8 -->
             <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
               <Icon name="map-pin" class="w-8 h-8 text-brand-500" />
-              <p class="text-xs font-semibold text-foreground">Based in <br class="sm:hidden" />{siteConfig.address?.city ?? 'Toronto'}{siteConfig.address?.country ? `, ${siteConfig.address.country}` : ''}</p>
+              <p class="text-xs font-semibold text-foreground">Based in <br class="sm:hidden" /> {siteConfig.address.state}, {siteConfig.address.country}</p>
             </div>
 
           </div>
         </Card>
 
-        <!-- Mobile "More about us" button -->
         <div class="hidden sm:flex justify-center glitch:hidden" data-reveal data-reveal-delay="2">
           <Button variant="outline" href="/about">
             More about us
@@ -382,42 +297,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           </Button>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-6 text-center" data-reveal>
-        <Badge variant="brand" pill>From the blog</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          Featured
-        </h2>
-      </div>
-
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post, index) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            href={`/blog/${post.id.replace('en/', '')}`}
-            publishedAt={post.data.publishedAt}
-            tags={post.data.tags}
-            author={post.data.author}
-            image={post.data.image}
-            svgSlug={post.data.svgSlug}
-            revealDelay={index}
-            class={index === 3 ? 'hidden sm:block lg:hidden' : undefined}
-          />
-        ))}
-      </div>
-
-      <div class="flex justify-center">
-        <Button variant="outline" href="/blog">
-          View all posts
-          <Icon name="arrow-right" size="sm" />
-        </Button>
       </div>
     </div>
   </section>
