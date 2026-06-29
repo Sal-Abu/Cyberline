@@ -2,8 +2,8 @@
 /**
  * TechStack — responsive stack showcase
  *
- * Phones get a focused 2×2 grid of four core-stack cards (Astro, Tailwind CSS,
- * TypeScript, React). Tablet and up swap those cards for the full double-row
+ * Phones get a focused 2×2 grid of four core-stack cards. 
+ * Tablet and up swap those cards for the full double-row
  * marquee (the same one the homepage uses), while the badge / title / description
  * header stays the same across every breakpoint.
  *
@@ -25,9 +25,9 @@ interface Props {
 
 const { title, description, badge, background = 'secondary' } = Astro.props;
 
-// Phone-only cards: a focused subset of the stack, in stack order. Tablet & up
+// Phone-only cards: a focused subset of the MSP stack. Tablet & up
 // show the full marquee instead, so these four only ever render on phones.
-const cardNames = ['Astro', 'Tailwind CSS', 'TypeScript', 'React'];
+const cardNames = ['N8N', 'Microsoft 365', 'PostgreSQL', 'Linux'];
 const items = await getCollection('stack');
 const cards = items
   .filter((item) => cardNames.includes(item.data.name))

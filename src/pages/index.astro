@@ -8,6 +8,7 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
 import StackMarquee from '@/components/landing/StackMarquee.astro';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { getCollection } from 'astro:content';
 import siteConfig from '@/config/site.config';
 
@@ -37,8 +38,11 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator fullHeight>
     <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Available for new projects</Badge>
 
-    <h1 slot="title" class="!text-[clamp(2rem,11.2vw,3rem)] sm:!text-5xl md:!text-6xl lg:!text-7xl">
-      <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor] whitespace-nowrap">Cyberline Solutions</span>
+    <h1 slot="title" class="!text-[clamp(2rem,11.2vw,3rem)] sm:!text-5xl md:!text-6xl lg:!text-7xl leading-tight">
+      <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor] whitespace-nowrap">Cyberline Solutions</span><br />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
+          <TypingEffect words={["Managed Technical Services", "IT Consulting.", "Web Development", "Business Automations", "AI Tooling"]} />
+      </span>
     </h1>
 
     <p slot="description">

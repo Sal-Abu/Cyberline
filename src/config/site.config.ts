@@ -134,7 +134,7 @@ const siteConfig: SiteConfig = {
   url: SITE_URL || 'https://cyberlinesolutions.com',
   ogImage: '/og-default.svg',
   author: 'Sal Abu',
-  email: 'contact@mail.cyberlinesolutions.com',
+  email: 'contact@cyberlinesolutions.com',
   address: {
     street: '',
     city: 'Toronto',
@@ -143,7 +143,7 @@ const siteConfig: SiteConfig = {
     country: 'Canada',
   },
   socialLinks: [
-    'https://www.linkedin.com',
+    'https://www.linkedin.com/company/cyberline-tech-solutions/',
   ],
   twitter: {
     site: '',

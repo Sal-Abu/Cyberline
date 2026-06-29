@@ -10,6 +10,7 @@ import Card from '@/components/ui/data-display/Card/Card.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
 
 // Hardcoded testimonials mapped to your core services
 const testimonials = [
@@ -85,7 +86,10 @@ const testimonials = [
     </Badge>
 
     <h1 slot="title">
-      Trusted by <span class="text-brand-500">industry leaders</span>
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Trusted by</span><br />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
+        <TypingEffect words={["industry leaders.", "growing startups.", "local businesses.", "our partners."]} />
+      </span>
     </h1>
 
     <p slot="description">
@@ -178,6 +182,3 @@ const testimonials = [
     </LetterGlitchBand>
   </section>
 </PageLayout>
-```eof
-
-The page is entirely self-contained now. I used your `<Card>` component to create elevated boxes, added a nice large quote icon watermark to the top left of each, included the specific service icon dynamically mapped to the top right of each card, and built a clean "author profile" row at the bottom of the card!

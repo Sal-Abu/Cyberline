@@ -105,14 +105,12 @@ const channels = [
                 <Icon name="map-pin" size="sm" />
               </div>
               <div>
-                <p class="font-semibold text-sm text-foreground">{siteConfig.address?.city ?? 'Toronto'}</p>
-                <p class="text-xs text-foreground-muted mt-0.5">Based in {siteConfig.address?.country ?? 'Canada'}</p>
+                <p class="font-semibold text-sm text-foreground">{siteConfig.address.state}</p>
+                <p class="text-xs text-foreground-muted mt-0.5">Based in {siteConfig.address.country}</p>
               </div>
             </div>
           </Card>
-
         </div>
-
       </div>
     </div>
   </section>
