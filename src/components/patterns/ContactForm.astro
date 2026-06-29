@@ -105,40 +105,41 @@ const {
 <script>
   function initContactForm() {
     const form = document.getElementById('contact-form') as HTMLFormElement;
-    const button = document.getElementById('submit-button') as HTMLButtonElement;
-    const message = document.getElementById('form-message') as HTMLDivElement;
+    if (!form) return;
 
-    if (!form || !button || !message) return;
-
-    // --- Subject URL Parameter Auto-Fill Logic ---
-    const params = new URLSearchParams(window.location.search);
-    const prefillSubject = params.get('subject');
+    // 1. FIRST: Clone and replace the form to clear old event listeners (Astro View Transitions)
+    const newForm = form.cloneNode(true) as HTMLFormElement;
+    form.parentNode?.replaceChild(newForm, form);
+    
+    // 2. Re-select the elements from the NEW, active form in the DOM
+    const newButton = document.getElementById('submit-button') as HTMLButtonElement;
+    const newMessage = document.getElementById('form-message') as HTMLDivElement;
     const subjectSelect = document.getElementById('subject') as HTMLSelectElement;
 
+    if (!newButton || !newMessage) return;
+
+    // --- 3. Subject URL Parameter Auto-Fill Logic ---
+    const params = new URLSearchParams(window.location.search);
+    const prefillSubject = params.get('subject');
+
     if (prefillSubject && subjectSelect) {
+      // Set the value on the active DOM element
       subjectSelect.value = prefillSubject;
       
       // Highlight briefly so the user sees it updated
       subjectSelect.style.transition = 'background-color 0.3s ease';
-      subjectSelect.style.backgroundColor = 'rgba(var(--brand-500), 0.1)'; 
+      subjectSelect.style.backgroundColor = 'rgba(var(--brand-500), 0.1)'; // Adjust color if needed
       
       setTimeout(() => {
         subjectSelect.style.backgroundColor = '';
       }, 1500);
     }
-    // ---------------------------------------------
+    // ------------------------------------------------
 
-    const successMessage = form.dataset.successMessage || 'Message sent successfully!';
-    const originalButtonHTML = button.innerHTML;
+    const successMessage = newForm.dataset.successMessage || 'Message sent successfully!';
+    const originalButtonHTML = newButton.innerHTML;
 
-    // Remove old listeners to prevent duplicates during view transitions
-    const newForm = form.cloneNode(true) as HTMLFormElement;
-    form.parentNode?.replaceChild(newForm, form);
-    
-    // Re-select elements after cloning
-    const newButton = document.getElementById('submit-button') as HTMLButtonElement;
-    const newMessage = document.getElementById('form-message') as HTMLDivElement;
-
+    // 4. Attach the submit listener to the new form
     newForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -160,10 +161,9 @@ const {
           newMessage.className = 'text-sm text-success';
           newForm.reset();
           
-          // Reset the subject to the prefilled option if it exists after successful submission
+          // Reset the subject to the prefilled option if they want to send another message
           if (prefillSubject && subjectSelect) {
-             const updatedSelect = document.getElementById('subject') as HTMLSelectElement;
-             if (updatedSelect) updatedSelect.value = prefillSubject;
+             subjectSelect.value = prefillSubject;
           }
         } else {
           const errors = data.errors
