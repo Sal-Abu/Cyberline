@@ -70,18 +70,16 @@ export interface ResolvedNavItem {
 
 export const navItems: NavItem[] = [
   { label: 'Services', href: '/services', order: 1, labelKey: 'nav.items.services' },
-  { label: 'Blog', href: '/blog', order: 2, labelKey: 'nav.items.blog' },
-  { label: 'Testimonials', href: '/testimonials', order: 3, labelKey: 'Testimonials' },
-  { label: 'About', href: '/about', order: 4, labelKey: 'nav.items.about' },
-  { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
+  { label: 'Testimonials', href: '/testimonials', order: 2, labelKey: 'Testimonials' },
+  { label: 'About', href: '/about', order: 3, labelKey: 'nav.items.about' },
+  { label: 'Contact', href: '/contact', order: 4, labelKey: 'nav.items.contact' },
 ];
 
 export const footerNavItems: NavItem[] = [
   { label: 'Services', href: '/services', order: 1, labelKey: 'nav.items.services' },
-  { label: 'Blog', href: '/blog', order: 2, labelKey: 'nav.items.blog' },
-  { label: 'Testimonials', href: '/testimonials', order: 3, labelKey: 'Testimonials' },
-  { label: 'About', href: '/about', order: 4, labelKey: 'nav.items.about' },
-  { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
+  { label: 'Testimonials', href: '/testimonials', order: 2, labelKey: 'Testimonials' },
+  { label: 'About', href: '/about', order: 3, labelKey: 'nav.items.about' },
+  { label: 'Contact', href: '/contact', order: 4, labelKey: 'nav.items.contact' },
 ];
 
 export const legalLinks: LegalLink[] = [];
