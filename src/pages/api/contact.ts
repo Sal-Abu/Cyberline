@@ -8,11 +8,11 @@ import siteConfig from '@/config/site.config';
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   email: z.email('Please enter a valid email address'),
-  phone: z.string().max(50).optional(), // Added phone validation
-  company: z.string().max(100).optional(), // Added company validation
+  phone: z.string().max(50).optional(),
+  company: z.string().max(100).optional(),
   subject: z.string().max(200).optional(),
   message: z.string().min(10, 'Message must be at least 10 characters').max(5000),
-  honeypot: z.string().max(0), // Anti-spam: must be empty
+  honeypot: z.string().max(0),
 });
 
 export const POST: APIRoute = async ({ request }) => {
@@ -22,8 +22,8 @@ export const POST: APIRoute = async ({ request }) => {
     const data = {
       name: formData.get('name')?.toString() || '',
       email: formData.get('email')?.toString() || '',
-      phone: formData.get('phone')?.toString() || '',       // Extract phone
-      company: formData.get('company')?.toString() || '',   // Extract company
+      phone: formData.get('phone')?.toString() || '',
+      company: formData.get('company')?.toString() || '',
       subject: formData.get('subject')?.toString() || '',
       message: formData.get('message')?.toString() || '',
       honeypot: formData.get('honeypot')?.toString() || '',
@@ -75,7 +75,7 @@ export const POST: APIRoute = async ({ request }) => {
       : `[${siteLabel}] New contact from ${result.data.name}`;
 
     const { error } = await resend.emails.send({
-      from: `Cyberline Website <noreply@mail.cyberlinesolutions.com>`, // Fixed to verified domain
+      from: `Cyberline Website <noreply@mail.cyberlinesolutions.com>`, 
       to: toEmail,
       replyTo: result.data.email,
       subject,
@@ -97,6 +97,32 @@ export const POST: APIRoute = async ({ request }) => {
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
+
+    // --- NEW: Forward data to n8n Webhook for automations (Discord, etc.) ---
+    try {
+      // It is best practice to store this in your .env file as N8N_WEBHOOK_URL
+      // Remember to change /webhook-test/ to /webhook/ when your n8n workflow goes live
+      const n8nWebhookUrl = import.meta.env.N8N_WEBHOOK_URL || 'https://n8n.cyberlinesolutions.com/webhook-test/contact';
+      
+      await fetch(n8nWebhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          clientName: result.data.name,
+          clientEmail: result.data.email,
+          clientPhone: result.data.phone || 'Not provided',
+          clientCompany: result.data.company || 'Not provided',
+          clientSubject: result.data.subject || 'General Inquiry',
+          clientMessage: result.data.message,
+          submittedAt: new Date().toISOString()
+        }),
+      });
+    } catch (n8nError) {
+      // We log the error but DO NOT throw it. 
+      // If the local n8n server is offline, the client still gets a successful form submission.
+      console.error('Failed to ping n8n webhook (non-fatal):', n8nError);
+    }
+    // ------------------------------------------------------------------------
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
